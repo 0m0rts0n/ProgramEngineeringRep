@@ -1,0 +1,1896 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище HospitalDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AccountingWorks">
+          <Key>
+            <PropertyRef Name="AccountingID" />
+          </Key>
+          <Property Name="AccountingID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="VisitID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="AccShiftDuties">
+          <Key>
+            <PropertyRef Name="AccountingID" />
+            <PropertyRef Name="ShiftID" />
+          </Key>
+          <Property Name="AccountingID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ShiftID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsDutyDoctor" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Agencies">
+          <Key>
+            <PropertyRef Name="AgencyID" />
+          </Key>
+          <Property Name="AgencyID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AgencyName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Analyzes">
+          <Key>
+            <PropertyRef Name="AnalysisID" />
+          </Key>
+          <Property Name="AnalysisID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AnalysisType" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DoctorDischarge">
+          <Key>
+            <PropertyRef Name="DischargeID" />
+          </Key>
+          <Property Name="DischargeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PatientID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DrugID1" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DrugID2" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DrugID3" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Doctors">
+          <Key>
+            <PropertyRef Name="DoctorID" />
+          </Key>
+          <Property Name="DoctorID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SpecID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DoctorFullName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Age" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="Experience" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="BirthDate" Type="date" Nullable="false" />
+          <Property Name="Cost" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DrugProviders">
+          <Key>
+            <PropertyRef Name="DrugProviderID" />
+          </Key>
+          <Property Name="DrugProviderID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProviderName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ProviderCountry" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Drugs">
+          <Key>
+            <PropertyRef Name="DrugID" />
+          </Key>
+          <Property Name="DrugID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DrugProviderID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DrugName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DrugPurpose" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="IsPrescriptionAllowed" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Historyillings">
+          <Key>
+            <PropertyRef Name="HistoryillingID" />
+          </Key>
+          <Property Name="HistoryillingID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IllingID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AnalysisID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AnalysisResult" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DatePatientilling" Type="date" Nullable="false" />
+          <Property Name="PatientCondition" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Illings">
+          <Key>
+            <PropertyRef Name="IllingID" />
+          </Key>
+          <Property Name="IllingID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IllingName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Symptomatology" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="TreatDiseaseDuration" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PatientCards">
+          <Key>
+            <PropertyRef Name="PatientCardNum" />
+          </Key>
+          <Property Name="PatientCardNum" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CardCreatingDate" Type="date" Nullable="false" />
+          <Property Name="CardOwnerFIO" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HistoryillingID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Patients">
+          <Key>
+            <PropertyRef Name="PatientID" />
+          </Key>
+          <Property Name="PatientID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PolicyID" Type="numeric" Precision="16" Scale="0" Nullable="false" />
+          <Property Name="PatientCardNum" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Policies">
+          <Key>
+            <PropertyRef Name="PolicyNum" />
+          </Key>
+          <Property Name="PolicyNum" Type="numeric" Precision="16" Scale="0" Nullable="false" />
+          <Property Name="AgencyID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PatientFullName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PatientBirthDate" Type="date" Nullable="false" />
+          <Property Name="PatientAddress" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="PatientIssueDate" Type="date" Nullable="false" />
+          <Property Name="PatientExpiredDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Receptions">
+          <Key>
+            <PropertyRef Name="ReceptionID" />
+          </Key>
+          <Property Name="ReceptionID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ReceptionType" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shifts">
+          <Key>
+            <PropertyRef Name="ShiftID" />
+          </Key>
+          <Property Name="ShiftID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ShiftName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ShiftTime" Type="time" Precision="0" />
+        </EntityType>
+        <EntityType Name="Specifications">
+          <Key>
+            <PropertyRef Name="SpecID" />
+          </Key>
+          <Property Name="SpecID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SpecName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Visits">
+          <Key>
+            <PropertyRef Name="VisitID" />
+          </Key>
+          <Property Name="VisitID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PatientID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DoctorID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ReceptionDateTime" Type="datetime" Nullable="false" />
+          <Property Name="ReceptionID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AccountingWorks_Visits">
+          <End Role="Visits" Type="Self.Visits" Multiplicity="0..1" />
+          <End Role="AccountingWorks" Type="Self.AccountingWorks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Visits">
+              <PropertyRef Name="VisitID" />
+            </Principal>
+            <Dependent Role="AccountingWorks">
+              <PropertyRef Name="VisitID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccShiftDuties_AccountingWorks">
+          <End Role="AccountingWorks" Type="Self.AccountingWorks" Multiplicity="1" />
+          <End Role="AccShiftDuties" Type="Self.AccShiftDuties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountingWorks">
+              <PropertyRef Name="AccountingID" />
+            </Principal>
+            <Dependent Role="AccShiftDuties">
+              <PropertyRef Name="AccountingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccShiftDuties_Shifts">
+          <End Role="Shifts" Type="Self.Shifts" Multiplicity="1" />
+          <End Role="AccShiftDuties" Type="Self.AccShiftDuties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shifts">
+              <PropertyRef Name="ShiftID" />
+            </Principal>
+            <Dependent Role="AccShiftDuties">
+              <PropertyRef Name="ShiftID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DoctorDischarge_Drugs">
+          <End Role="Drugs" Type="Self.Drugs" Multiplicity="1" />
+          <End Role="DoctorDischarge" Type="Self.DoctorDischarge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drugs">
+              <PropertyRef Name="DrugID" />
+            </Principal>
+            <Dependent Role="DoctorDischarge">
+              <PropertyRef Name="DrugID1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DoctorDischarge_Drugs1">
+          <End Role="Drugs" Type="Self.Drugs" Multiplicity="1" />
+          <End Role="DoctorDischarge" Type="Self.DoctorDischarge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drugs">
+              <PropertyRef Name="DrugID" />
+            </Principal>
+            <Dependent Role="DoctorDischarge">
+              <PropertyRef Name="DrugID2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DoctorDischarge_Drugs2">
+          <End Role="Drugs" Type="Self.Drugs" Multiplicity="1" />
+          <End Role="DoctorDischarge" Type="Self.DoctorDischarge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drugs">
+              <PropertyRef Name="DrugID" />
+            </Principal>
+            <Dependent Role="DoctorDischarge">
+              <PropertyRef Name="DrugID3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DoctorDischarge_Patients">
+          <End Role="Patients" Type="Self.Patients" Multiplicity="1" />
+          <End Role="DoctorDischarge" Type="Self.DoctorDischarge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patients">
+              <PropertyRef Name="PatientID" />
+            </Principal>
+            <Dependent Role="DoctorDischarge">
+              <PropertyRef Name="PatientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doctors_Specifications">
+          <End Role="Specifications" Type="Self.Specifications" Multiplicity="1" />
+          <End Role="Doctors" Type="Self.Doctors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specifications">
+              <PropertyRef Name="SpecID" />
+            </Principal>
+            <Dependent Role="Doctors">
+              <PropertyRef Name="SpecID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Drugs_DrugProviders">
+          <End Role="DrugProviders" Type="Self.DrugProviders" Multiplicity="1" />
+          <End Role="Drugs" Type="Self.Drugs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DrugProviders">
+              <PropertyRef Name="DrugProviderID" />
+            </Principal>
+            <Dependent Role="Drugs">
+              <PropertyRef Name="DrugProviderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Historyillings_Analyzes">
+          <End Role="Analyzes" Type="Self.Analyzes" Multiplicity="1" />
+          <End Role="Historyillings" Type="Self.Historyillings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Analyzes">
+              <PropertyRef Name="AnalysisID" />
+            </Principal>
+            <Dependent Role="Historyillings">
+              <PropertyRef Name="AnalysisID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Historyillings_Illings">
+          <End Role="Illings" Type="Self.Illings" Multiplicity="1" />
+          <End Role="Historyillings" Type="Self.Historyillings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Illings">
+              <PropertyRef Name="IllingID" />
+            </Principal>
+            <Dependent Role="Historyillings">
+              <PropertyRef Name="IllingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientCards_Historyillings">
+          <End Role="Historyillings" Type="Self.Historyillings" Multiplicity="0..1" />
+          <End Role="PatientCards" Type="Self.PatientCards" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Historyillings">
+              <PropertyRef Name="HistoryillingID" />
+            </Principal>
+            <Dependent Role="PatientCards">
+              <PropertyRef Name="HistoryillingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patients_PatientCards">
+          <End Role="PatientCards" Type="Self.PatientCards" Multiplicity="1" />
+          <End Role="Patients" Type="Self.Patients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatientCards">
+              <PropertyRef Name="PatientCardNum" />
+            </Principal>
+            <Dependent Role="Patients">
+              <PropertyRef Name="PatientCardNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patients_Policies">
+          <End Role="Policies" Type="Self.Policies" Multiplicity="1" />
+          <End Role="Patients" Type="Self.Patients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Policies">
+              <PropertyRef Name="PolicyNum" />
+            </Principal>
+            <Dependent Role="Patients">
+              <PropertyRef Name="PolicyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Policies_Agencies">
+          <End Role="Agencies" Type="Self.Agencies" Multiplicity="1" />
+          <End Role="Policies" Type="Self.Policies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agencies">
+              <PropertyRef Name="AgencyID" />
+            </Principal>
+            <Dependent Role="Policies">
+              <PropertyRef Name="AgencyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visits_Doctors">
+          <End Role="Doctors" Type="Self.Doctors" Multiplicity="1" />
+          <End Role="Visits" Type="Self.Visits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctors">
+              <PropertyRef Name="DoctorID" />
+            </Principal>
+            <Dependent Role="Visits">
+              <PropertyRef Name="DoctorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visits_Patients">
+          <End Role="Patients" Type="Self.Patients" Multiplicity="1" />
+          <End Role="Visits" Type="Self.Visits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patients">
+              <PropertyRef Name="PatientID" />
+            </Principal>
+            <Dependent Role="Visits">
+              <PropertyRef Name="PatientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visits_Receptions">
+          <End Role="Receptions" Type="Self.Receptions" Multiplicity="1" />
+          <End Role="Visits" Type="Self.Visits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Receptions">
+              <PropertyRef Name="ReceptionID" />
+            </Principal>
+            <Dependent Role="Visits">
+              <PropertyRef Name="ReceptionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="CrtAccShiftDuties" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CrtAccWorks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CrtAgencies" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CrtAnalyzes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CrtDocDischarge" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CrtDoctors" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CrtDrugProviders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CrtDrugs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CrtHistoryillings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="HistoryIllID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="CrtIllings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CrtPatientCards" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CrtPatients" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CrtPolicies" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CrtReceptions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CrtShifts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CrtSpecifications" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CrtVisits" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="DelAccShiftDuties" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AccID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ShiftID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="DelAccWorks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AccID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="DelAgencies" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AgID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="DelAnalyzes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AnID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="DelDocDischarge" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DischargeID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="DelDoctors" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DocID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="DelDrugProviders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DrugProviderID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="DelDrugs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DrugID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="DelHistoryillings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="HistoryIllID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="DelIllings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IllID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="DelPatientCards" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PatCardNum" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="DelPatients" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PatID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="DelPolicies" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PolID" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="DelReceptions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RecID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="DelShifts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ShiftID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="DelSpecifications" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SpecID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="DelVisits" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="VisitID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="InsAccShiftDuties" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AccID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ShiftID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="IsDutyDoc" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="InsAccWorks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AccID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="VisitID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="InsAgencies" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AgName" Type="nvarchar" Mode="In" />
+          <Parameter Name="AgID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="InsAnalyzes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AnID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AnType" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="InsDocDischarge" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DischargeID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PatID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="DrugID1" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="DrugID2" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="DrugID3" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="InsDoctors" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DocID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="SpecID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="DocFullName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Age" Type="numeric" Mode="In" />
+          <Parameter Name="Exp" Type="numeric" Mode="In" />
+          <Parameter Name="BirthD" Type="date" Mode="In" />
+          <Parameter Name="Cost" Type="money" Mode="In" />
+        </Function>
+        <Function Name="InsDrugProviders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DrugProviderID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ProviderName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ProviderCountry" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="InsDrugs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DrugID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="DrugProviderID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="DrugName" Type="nvarchar" Mode="In" />
+          <Parameter Name="DrugPurpose" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsPreAllowed" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="InsHistoryillings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="HistoryIllID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="IllID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AnID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AnRes" Type="nvarchar" Mode="In" />
+          <Parameter Name="DatePat" Type="date" Mode="In" />
+          <Parameter Name="PatCond" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="InsIllings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IllID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="IllName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Sympt" Type="nvarchar" Mode="In" />
+          <Parameter Name="TreatDisDur" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="InsPatientCards" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PatCardNum" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="CardCrtDate" Type="date" Mode="In" />
+          <Parameter Name="CardOwnerFIO" Type="nvarchar" Mode="In" />
+          <Parameter Name="HisIllID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="InsPatients" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PatID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PolID" Type="numeric" Mode="In" />
+          <Parameter Name="PatCardNum" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="InsPolicies" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PolID" Type="numeric" Mode="In" />
+          <Parameter Name="AgID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PatFullName" Type="nvarchar" Mode="In" />
+          <Parameter Name="PatBirthD" Type="date" Mode="In" />
+          <Parameter Name="PatAddr" Type="nvarchar" Mode="In" />
+          <Parameter Name="PatIssueD" Type="date" Mode="In" />
+          <Parameter Name="PatExpD" Type="date" Mode="In" />
+        </Function>
+        <Function Name="InsReceptions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RecID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="RecType" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="InsShifts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ShiftID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ShiftName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ShiftTime" Type="time" Mode="In" />
+        </Function>
+        <Function Name="InsSpecifications" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SpecID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="SpecName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="InsVisits" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="VisitID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PatientID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="DoctorID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ReceptionDateTime" Type="datetime" Mode="In" />
+          <Parameter Name="ReceptionID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="UpdAccShiftDuties" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AccID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ShiftID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="IsDutyDoc" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="UpdAccWorks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AccID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="VisitID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="UpdAgencies" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AgName" Type="nvarchar" Mode="In" />
+          <Parameter Name="AgID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="UpdAnalyzes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AnID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AnType" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UpdDocDischarge" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DischargeID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PatID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="DrugID1" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="DrugID2" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="DrugID3" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="UpdDoctors" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DocID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="SpecID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="DocFullName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Age" Type="numeric" Mode="In" />
+          <Parameter Name="Exp" Type="numeric" Mode="In" />
+          <Parameter Name="BirthD" Type="date" Mode="In" />
+          <Parameter Name="Cost" Type="money" Mode="In" />
+        </Function>
+        <Function Name="UpdDrugProviders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DrugProviderID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ProviderName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ProviderCountry" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UpdDrugs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DrugID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="DrugProviderID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="DrugName" Type="nvarchar" Mode="In" />
+          <Parameter Name="DrugPurpose" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsPreAllowed" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="UpdHistoryillings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="HistoryIllID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="IllID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AnID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AnRes" Type="nvarchar" Mode="In" />
+          <Parameter Name="DatePat" Type="date" Mode="In" />
+          <Parameter Name="PatCond" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UpdIllings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IllID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="IllName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Sympt" Type="nvarchar" Mode="In" />
+          <Parameter Name="TreatDisDur" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="UpdPatientCards" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PatCardNum" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="CardCrtDate" Type="date" Mode="In" />
+          <Parameter Name="CardOwnerFIO" Type="nvarchar" Mode="In" />
+          <Parameter Name="HisIllID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="UpdPatients" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PatID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PolID" Type="numeric" Mode="In" />
+          <Parameter Name="PatCardNum" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="UpdPolicies" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PolID" Type="numeric" Mode="In" />
+          <Parameter Name="AgID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PatFullName" Type="nvarchar" Mode="In" />
+          <Parameter Name="PatBirthD" Type="date" Mode="In" />
+          <Parameter Name="PatAddr" Type="nvarchar" Mode="In" />
+          <Parameter Name="PatIssueD" Type="date" Mode="In" />
+          <Parameter Name="PatExpD" Type="date" Mode="In" />
+        </Function>
+        <Function Name="UpdReceptions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RecID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="RecType" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UpdShifts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ShiftID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ShiftName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ShiftTime" Type="time" Mode="In" />
+        </Function>
+        <Function Name="UpdSpecifications" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SpecID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="SpecName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UpdVisits" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="VisitID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PatientID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="DoctorID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ReceptionDateTime" Type="datetime" Mode="In" />
+          <Parameter Name="ReceptionID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <EntityContainer Name="Хранилище HospitalDBModelContainer">
+          <EntitySet Name="AccountingWorks" EntityType="Self.AccountingWorks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccShiftDuties" EntityType="Self.AccShiftDuties" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Agencies" EntityType="Self.Agencies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Analyzes" EntityType="Self.Analyzes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DoctorDischarge" EntityType="Self.DoctorDischarge" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Doctors" EntityType="Self.Doctors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DrugProviders" EntityType="Self.DrugProviders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Drugs" EntityType="Self.Drugs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Historyillings" EntityType="Self.Historyillings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Illings" EntityType="Self.Illings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PatientCards" EntityType="Self.PatientCards" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Patients" EntityType="Self.Patients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Policies" EntityType="Self.Policies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Receptions" EntityType="Self.Receptions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shifts" EntityType="Self.Shifts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Specifications" EntityType="Self.Specifications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Visits" EntityType="Self.Visits" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AccountingWorks_Visits" Association="Self.FK_AccountingWorks_Visits">
+            <End Role="Visits" EntitySet="Visits" />
+            <End Role="AccountingWorks" EntitySet="AccountingWorks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccShiftDuties_AccountingWorks" Association="Self.FK_AccShiftDuties_AccountingWorks">
+            <End Role="AccountingWorks" EntitySet="AccountingWorks" />
+            <End Role="AccShiftDuties" EntitySet="AccShiftDuties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccShiftDuties_Shifts" Association="Self.FK_AccShiftDuties_Shifts">
+            <End Role="Shifts" EntitySet="Shifts" />
+            <End Role="AccShiftDuties" EntitySet="AccShiftDuties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DoctorDischarge_Drugs" Association="Self.FK_DoctorDischarge_Drugs">
+            <End Role="Drugs" EntitySet="Drugs" />
+            <End Role="DoctorDischarge" EntitySet="DoctorDischarge" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DoctorDischarge_Drugs1" Association="Self.FK_DoctorDischarge_Drugs1">
+            <End Role="Drugs" EntitySet="Drugs" />
+            <End Role="DoctorDischarge" EntitySet="DoctorDischarge" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DoctorDischarge_Drugs2" Association="Self.FK_DoctorDischarge_Drugs2">
+            <End Role="Drugs" EntitySet="Drugs" />
+            <End Role="DoctorDischarge" EntitySet="DoctorDischarge" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DoctorDischarge_Patients" Association="Self.FK_DoctorDischarge_Patients">
+            <End Role="Patients" EntitySet="Patients" />
+            <End Role="DoctorDischarge" EntitySet="DoctorDischarge" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doctors_Specifications" Association="Self.FK_Doctors_Specifications">
+            <End Role="Specifications" EntitySet="Specifications" />
+            <End Role="Doctors" EntitySet="Doctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Drugs_DrugProviders" Association="Self.FK_Drugs_DrugProviders">
+            <End Role="DrugProviders" EntitySet="DrugProviders" />
+            <End Role="Drugs" EntitySet="Drugs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Historyillings_Analyzes" Association="Self.FK_Historyillings_Analyzes">
+            <End Role="Analyzes" EntitySet="Analyzes" />
+            <End Role="Historyillings" EntitySet="Historyillings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Historyillings_Illings" Association="Self.FK_Historyillings_Illings">
+            <End Role="Illings" EntitySet="Illings" />
+            <End Role="Historyillings" EntitySet="Historyillings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientCards_Historyillings" Association="Self.FK_PatientCards_Historyillings">
+            <End Role="Historyillings" EntitySet="Historyillings" />
+            <End Role="PatientCards" EntitySet="PatientCards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patients_PatientCards" Association="Self.FK_Patients_PatientCards">
+            <End Role="PatientCards" EntitySet="PatientCards" />
+            <End Role="Patients" EntitySet="Patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patients_Policies" Association="Self.FK_Patients_Policies">
+            <End Role="Policies" EntitySet="Policies" />
+            <End Role="Patients" EntitySet="Patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Policies_Agencies" Association="Self.FK_Policies_Agencies">
+            <End Role="Agencies" EntitySet="Agencies" />
+            <End Role="Policies" EntitySet="Policies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Visits_Doctors" Association="Self.FK_Visits_Doctors">
+            <End Role="Doctors" EntitySet="Doctors" />
+            <End Role="Visits" EntitySet="Visits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Visits_Patients" Association="Self.FK_Visits_Patients">
+            <End Role="Patients" EntitySet="Patients" />
+            <End Role="Visits" EntitySet="Visits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Visits_Receptions" Association="Self.FK_Visits_Receptions">
+            <End Role="Receptions" EntitySet="Receptions" />
+            <End Role="Visits" EntitySet="Visits" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HospitalDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AccountingWork">
+          <Key>
+            <PropertyRef Name="AccountingID" />
+          </Key>
+          <Property Name="AccountingID" Type="Guid" Nullable="false" />
+          <Property Name="VisitID" Type="Guid" />
+          <NavigationProperty Name="Visit" Relationship="Self.FK_AccountingWorks_Visits" FromRole="AccountingWorks" ToRole="Visits" />
+          <NavigationProperty Name="AccShiftDuties" Relationship="Self.FK_AccShiftDuties_AccountingWorks" FromRole="AccountingWorks" ToRole="AccShiftDuties" />
+        </EntityType>
+        <EntityType Name="AccShiftDuty">
+          <Key>
+            <PropertyRef Name="AccountingID" />
+            <PropertyRef Name="ShiftID" />
+          </Key>
+          <Property Name="AccountingID" Type="Guid" Nullable="false" />
+          <Property Name="ShiftID" Type="Guid" Nullable="false" />
+          <Property Name="IsDutyDoctor" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AccountingWork" Relationship="Self.FK_AccShiftDuties_AccountingWorks" FromRole="AccShiftDuties" ToRole="AccountingWorks" />
+          <NavigationProperty Name="Shift" Relationship="Self.FK_AccShiftDuties_Shifts" FromRole="AccShiftDuties" ToRole="Shifts" />
+        </EntityType>
+        <EntityType Name="Agency">
+          <Key>
+            <PropertyRef Name="AgencyID" />
+          </Key>
+          <Property Name="AgencyID" Type="Guid" Nullable="false" />
+          <Property Name="AgencyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Policies" Relationship="Self.FK_Policies_Agencies" FromRole="Agencies" ToRole="Policies" />
+        </EntityType>
+        <EntityType Name="Analyze">
+          <Key>
+            <PropertyRef Name="AnalysisID" />
+          </Key>
+          <Property Name="AnalysisID" Type="Guid" Nullable="false" />
+          <Property Name="AnalysisType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Historyillings" Relationship="Self.FK_Historyillings_Analyzes" FromRole="Analyzes" ToRole="Historyillings" />
+        </EntityType>
+        <EntityType Name="DoctorDischarge">
+          <Key>
+            <PropertyRef Name="DischargeID" />
+          </Key>
+          <Property Name="DischargeID" Type="Guid" Nullable="false" />
+          <Property Name="PatientID" Type="Guid" Nullable="false" />
+          <Property Name="DrugID1" Type="Guid" Nullable="false" />
+          <Property Name="DrugID2" Type="Guid" Nullable="false" />
+          <Property Name="DrugID3" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Drug" Relationship="Self.FK_DoctorDischarge_Drugs" FromRole="DoctorDischarge" ToRole="Drugs" />
+          <NavigationProperty Name="Drug1" Relationship="Self.FK_DoctorDischarge_Drugs1" FromRole="DoctorDischarge" ToRole="Drugs" />
+          <NavigationProperty Name="Drug2" Relationship="Self.FK_DoctorDischarge_Drugs2" FromRole="DoctorDischarge" ToRole="Drugs" />
+          <NavigationProperty Name="Patient" Relationship="Self.FK_DoctorDischarge_Patients" FromRole="DoctorDischarge" ToRole="Patients" />
+        </EntityType>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="DoctorID" />
+          </Key>
+          <Property Name="DoctorID" Type="Guid" Nullable="false" />
+          <Property Name="SpecID" Type="Guid" Nullable="false" />
+          <Property Name="DoctorFullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Age" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="Experience" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Cost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Specification" Relationship="Self.FK_Doctors_Specifications" FromRole="Doctors" ToRole="Specifications" />
+          <NavigationProperty Name="Visits" Relationship="Self.FK_Visits_Doctors" FromRole="Doctors" ToRole="Visits" />
+        </EntityType>
+        <EntityType Name="DrugProvider">
+          <Key>
+            <PropertyRef Name="DrugProviderID" />
+          </Key>
+          <Property Name="DrugProviderID" Type="Guid" Nullable="false" />
+          <Property Name="ProviderName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Drugs" Relationship="Self.FK_Drugs_DrugProviders" FromRole="DrugProviders" ToRole="Drugs" />
+        </EntityType>
+        <EntityType Name="Drug">
+          <Key>
+            <PropertyRef Name="DrugID" />
+          </Key>
+          <Property Name="DrugID" Type="Guid" Nullable="false" />
+          <Property Name="DrugProviderID" Type="Guid" Nullable="false" />
+          <Property Name="DrugName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DrugPurpose" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsPrescriptionAllowed" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="DoctorDischarges" Relationship="Self.FK_DoctorDischarge_Drugs" FromRole="Drugs" ToRole="DoctorDischarge" />
+          <NavigationProperty Name="DoctorDischarges1" Relationship="Self.FK_DoctorDischarge_Drugs1" FromRole="Drugs" ToRole="DoctorDischarge" />
+          <NavigationProperty Name="DoctorDischarges2" Relationship="Self.FK_DoctorDischarge_Drugs2" FromRole="Drugs" ToRole="DoctorDischarge" />
+          <NavigationProperty Name="DrugProvider" Relationship="Self.FK_Drugs_DrugProviders" FromRole="Drugs" ToRole="DrugProviders" />
+        </EntityType>
+        <EntityType Name="Historyilling">
+          <Key>
+            <PropertyRef Name="HistoryillingID" />
+          </Key>
+          <Property Name="HistoryillingID" Type="Guid" Nullable="false" />
+          <Property Name="IllingID" Type="Guid" Nullable="false" />
+          <Property Name="AnalysisID" Type="Guid" Nullable="false" />
+          <Property Name="AnalysisResult" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DatePatientilling" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PatientCondition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Analyze" Relationship="Self.FK_Historyillings_Analyzes" FromRole="Historyillings" ToRole="Analyzes" />
+          <NavigationProperty Name="Illing" Relationship="Self.FK_Historyillings_Illings" FromRole="Historyillings" ToRole="Illings" />
+          <NavigationProperty Name="PatientCards" Relationship="Self.FK_PatientCards_Historyillings" FromRole="Historyillings" ToRole="PatientCards" />
+        </EntityType>
+        <EntityType Name="Illing">
+          <Key>
+            <PropertyRef Name="IllingID" />
+          </Key>
+          <Property Name="IllingID" Type="Guid" Nullable="false" />
+          <Property Name="IllingName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Symptomatology" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TreatDiseaseDuration" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Historyillings" Relationship="Self.FK_Historyillings_Illings" FromRole="Illings" ToRole="Historyillings" />
+        </EntityType>
+        <EntityType Name="PatientCard">
+          <Key>
+            <PropertyRef Name="PatientCardNum" />
+          </Key>
+          <Property Name="PatientCardNum" Type="Guid" Nullable="false" />
+          <Property Name="CardCreatingDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CardOwnerFIO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HistoryillingID" Type="Guid" />
+          <NavigationProperty Name="Historyilling" Relationship="Self.FK_PatientCards_Historyillings" FromRole="PatientCards" ToRole="Historyillings" />
+          <NavigationProperty Name="Patients" Relationship="Self.FK_Patients_PatientCards" FromRole="PatientCards" ToRole="Patients" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="PatientID" />
+          </Key>
+          <Property Name="PatientID" Type="Guid" Nullable="false" />
+          <Property Name="PolicyID" Type="Decimal" Precision="16" Scale="0" Nullable="false" />
+          <Property Name="PatientCardNum" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="DoctorDischarges" Relationship="Self.FK_DoctorDischarge_Patients" FromRole="Patients" ToRole="DoctorDischarge" />
+          <NavigationProperty Name="PatientCard" Relationship="Self.FK_Patients_PatientCards" FromRole="Patients" ToRole="PatientCards" />
+          <NavigationProperty Name="Policy" Relationship="Self.FK_Patients_Policies" FromRole="Patients" ToRole="Policies" />
+          <NavigationProperty Name="Visits" Relationship="Self.FK_Visits_Patients" FromRole="Patients" ToRole="Visits" />
+        </EntityType>
+        <EntityType Name="Policy">
+          <Key>
+            <PropertyRef Name="PolicyNum" />
+          </Key>
+          <Property Name="PolicyNum" Type="Decimal" Precision="16" Scale="0" Nullable="false" />
+          <Property Name="AgencyID" Type="Guid" Nullable="false" />
+          <Property Name="PatientFullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PatientBirthDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PatientAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PatientIssueDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PatientExpiredDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Agency" Relationship="Self.FK_Policies_Agencies" FromRole="Policies" ToRole="Agencies" />
+          <NavigationProperty Name="Patients" Relationship="Self.FK_Patients_Policies" FromRole="Policies" ToRole="Patients" />
+        </EntityType>
+        <EntityType Name="Reception">
+          <Key>
+            <PropertyRef Name="ReceptionID" />
+          </Key>
+          <Property Name="ReceptionID" Type="Guid" Nullable="false" />
+          <Property Name="ReceptionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Visits" Relationship="Self.FK_Visits_Receptions" FromRole="Receptions" ToRole="Visits" />
+        </EntityType>
+        <EntityType Name="Shift">
+          <Key>
+            <PropertyRef Name="ShiftID" />
+          </Key>
+          <Property Name="ShiftID" Type="Guid" Nullable="false" />
+          <Property Name="ShiftName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ShiftTime" Type="Time" Precision="0" />
+          <NavigationProperty Name="AccShiftDuties" Relationship="Self.FK_AccShiftDuties_Shifts" FromRole="Shifts" ToRole="AccShiftDuties" />
+        </EntityType>
+        <EntityType Name="Specification">
+          <Key>
+            <PropertyRef Name="SpecID" />
+          </Key>
+          <Property Name="SpecID" Type="Guid" Nullable="false" />
+          <Property Name="SpecName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Doctors" Relationship="Self.FK_Doctors_Specifications" FromRole="Specifications" ToRole="Doctors" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Visit">
+          <Key>
+            <PropertyRef Name="VisitID" />
+          </Key>
+          <Property Name="VisitID" Type="Guid" Nullable="false" />
+          <Property Name="PatientID" Type="Guid" Nullable="false" />
+          <Property Name="DoctorID" Type="Guid" Nullable="false" />
+          <Property Name="ReceptionDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ReceptionID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="AccountingWorks" Relationship="Self.FK_AccountingWorks_Visits" FromRole="Visits" ToRole="AccountingWorks" />
+          <NavigationProperty Name="Doctor" Relationship="Self.FK_Visits_Doctors" FromRole="Visits" ToRole="Doctors" />
+          <NavigationProperty Name="Patient" Relationship="Self.FK_Visits_Patients" FromRole="Visits" ToRole="Patients" />
+          <NavigationProperty Name="Reception" Relationship="Self.FK_Visits_Receptions" FromRole="Visits" ToRole="Receptions" />
+        </EntityType>
+        <Association Name="FK_AccountingWorks_Visits">
+          <End Role="Visits" Type="Self.Visit" Multiplicity="0..1" />
+          <End Role="AccountingWorks" Type="Self.AccountingWork" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Visits">
+              <PropertyRef Name="VisitID" />
+            </Principal>
+            <Dependent Role="AccountingWorks">
+              <PropertyRef Name="VisitID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccShiftDuties_AccountingWorks">
+          <End Role="AccountingWorks" Type="Self.AccountingWork" Multiplicity="1" />
+          <End Role="AccShiftDuties" Type="Self.AccShiftDuty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountingWorks">
+              <PropertyRef Name="AccountingID" />
+            </Principal>
+            <Dependent Role="AccShiftDuties">
+              <PropertyRef Name="AccountingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccShiftDuties_Shifts">
+          <End Role="Shifts" Type="Self.Shift" Multiplicity="1" />
+          <End Role="AccShiftDuties" Type="Self.AccShiftDuty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shifts">
+              <PropertyRef Name="ShiftID" />
+            </Principal>
+            <Dependent Role="AccShiftDuties">
+              <PropertyRef Name="ShiftID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Policies_Agencies">
+          <End Role="Agencies" Type="Self.Agency" Multiplicity="1" />
+          <End Role="Policies" Type="Self.Policy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agencies">
+              <PropertyRef Name="AgencyID" />
+            </Principal>
+            <Dependent Role="Policies">
+              <PropertyRef Name="AgencyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Historyillings_Analyzes">
+          <End Role="Analyzes" Type="Self.Analyze" Multiplicity="1" />
+          <End Role="Historyillings" Type="Self.Historyilling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Analyzes">
+              <PropertyRef Name="AnalysisID" />
+            </Principal>
+            <Dependent Role="Historyillings">
+              <PropertyRef Name="AnalysisID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DoctorDischarge_Drugs">
+          <End Role="Drugs" Type="Self.Drug" Multiplicity="1" />
+          <End Role="DoctorDischarge" Type="Self.DoctorDischarge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drugs">
+              <PropertyRef Name="DrugID" />
+            </Principal>
+            <Dependent Role="DoctorDischarge">
+              <PropertyRef Name="DrugID1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DoctorDischarge_Drugs1">
+          <End Role="Drugs" Type="Self.Drug" Multiplicity="1" />
+          <End Role="DoctorDischarge" Type="Self.DoctorDischarge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drugs">
+              <PropertyRef Name="DrugID" />
+            </Principal>
+            <Dependent Role="DoctorDischarge">
+              <PropertyRef Name="DrugID2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DoctorDischarge_Drugs2">
+          <End Role="Drugs" Type="Self.Drug" Multiplicity="1" />
+          <End Role="DoctorDischarge" Type="Self.DoctorDischarge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drugs">
+              <PropertyRef Name="DrugID" />
+            </Principal>
+            <Dependent Role="DoctorDischarge">
+              <PropertyRef Name="DrugID3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DoctorDischarge_Patients">
+          <End Role="Patients" Type="Self.Patient" Multiplicity="1" />
+          <End Role="DoctorDischarge" Type="Self.DoctorDischarge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patients">
+              <PropertyRef Name="PatientID" />
+            </Principal>
+            <Dependent Role="DoctorDischarge">
+              <PropertyRef Name="PatientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doctors_Specifications">
+          <End Role="Specifications" Type="Self.Specification" Multiplicity="1" />
+          <End Role="Doctors" Type="Self.Doctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specifications">
+              <PropertyRef Name="SpecID" />
+            </Principal>
+            <Dependent Role="Doctors">
+              <PropertyRef Name="SpecID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visits_Doctors">
+          <End Role="Doctors" Type="Self.Doctor" Multiplicity="1" />
+          <End Role="Visits" Type="Self.Visit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctors">
+              <PropertyRef Name="DoctorID" />
+            </Principal>
+            <Dependent Role="Visits">
+              <PropertyRef Name="DoctorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Drugs_DrugProviders">
+          <End Role="DrugProviders" Type="Self.DrugProvider" Multiplicity="1" />
+          <End Role="Drugs" Type="Self.Drug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DrugProviders">
+              <PropertyRef Name="DrugProviderID" />
+            </Principal>
+            <Dependent Role="Drugs">
+              <PropertyRef Name="DrugProviderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Historyillings_Illings">
+          <End Role="Illings" Type="Self.Illing" Multiplicity="1" />
+          <End Role="Historyillings" Type="Self.Historyilling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Illings">
+              <PropertyRef Name="IllingID" />
+            </Principal>
+            <Dependent Role="Historyillings">
+              <PropertyRef Name="IllingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientCards_Historyillings">
+          <End Role="Historyillings" Type="Self.Historyilling" Multiplicity="0..1" />
+          <End Role="PatientCards" Type="Self.PatientCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Historyillings">
+              <PropertyRef Name="HistoryillingID" />
+            </Principal>
+            <Dependent Role="PatientCards">
+              <PropertyRef Name="HistoryillingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patients_PatientCards">
+          <End Role="PatientCards" Type="Self.PatientCard" Multiplicity="1" />
+          <End Role="Patients" Type="Self.Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PatientCards">
+              <PropertyRef Name="PatientCardNum" />
+            </Principal>
+            <Dependent Role="Patients">
+              <PropertyRef Name="PatientCardNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patients_Policies">
+          <End Role="Policies" Type="Self.Policy" Multiplicity="1" />
+          <End Role="Patients" Type="Self.Patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Policies">
+              <PropertyRef Name="PolicyNum" />
+            </Principal>
+            <Dependent Role="Patients">
+              <PropertyRef Name="PolicyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visits_Patients">
+          <End Role="Patients" Type="Self.Patient" Multiplicity="1" />
+          <End Role="Visits" Type="Self.Visit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patients">
+              <PropertyRef Name="PatientID" />
+            </Principal>
+            <Dependent Role="Visits">
+              <PropertyRef Name="PatientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visits_Receptions">
+          <End Role="Receptions" Type="Self.Reception" Multiplicity="1" />
+          <End Role="Visits" Type="Self.Visit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Receptions">
+              <PropertyRef Name="ReceptionID" />
+            </Principal>
+            <Dependent Role="Visits">
+              <PropertyRef Name="ReceptionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HospitalDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AccountingWorks" EntityType="Self.AccountingWork" />
+          <EntitySet Name="AccShiftDuties" EntityType="Self.AccShiftDuty" />
+          <EntitySet Name="Agencies" EntityType="Self.Agency" />
+          <EntitySet Name="Analyzes" EntityType="Self.Analyze" />
+          <EntitySet Name="DoctorDischarges" EntityType="Self.DoctorDischarge" />
+          <EntitySet Name="Doctors" EntityType="Self.Doctor" />
+          <EntitySet Name="DrugProviders" EntityType="Self.DrugProvider" />
+          <EntitySet Name="Drugs" EntityType="Self.Drug" />
+          <EntitySet Name="Historyillings" EntityType="Self.Historyilling" />
+          <EntitySet Name="Illings" EntityType="Self.Illing" />
+          <EntitySet Name="PatientCards" EntityType="Self.PatientCard" />
+          <EntitySet Name="Patients" EntityType="Self.Patient" />
+          <EntitySet Name="Policies" EntityType="Self.Policy" />
+          <EntitySet Name="Receptions" EntityType="Self.Reception" />
+          <EntitySet Name="Shifts" EntityType="Self.Shift" />
+          <EntitySet Name="Specifications" EntityType="Self.Specification" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Visits" EntityType="Self.Visit" />
+          <AssociationSet Name="FK_AccountingWorks_Visits" Association="Self.FK_AccountingWorks_Visits">
+            <End Role="Visits" EntitySet="Visits" />
+            <End Role="AccountingWorks" EntitySet="AccountingWorks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccShiftDuties_AccountingWorks" Association="Self.FK_AccShiftDuties_AccountingWorks">
+            <End Role="AccountingWorks" EntitySet="AccountingWorks" />
+            <End Role="AccShiftDuties" EntitySet="AccShiftDuties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccShiftDuties_Shifts" Association="Self.FK_AccShiftDuties_Shifts">
+            <End Role="Shifts" EntitySet="Shifts" />
+            <End Role="AccShiftDuties" EntitySet="AccShiftDuties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Policies_Agencies" Association="Self.FK_Policies_Agencies">
+            <End Role="Agencies" EntitySet="Agencies" />
+            <End Role="Policies" EntitySet="Policies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Historyillings_Analyzes" Association="Self.FK_Historyillings_Analyzes">
+            <End Role="Analyzes" EntitySet="Analyzes" />
+            <End Role="Historyillings" EntitySet="Historyillings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DoctorDischarge_Drugs" Association="Self.FK_DoctorDischarge_Drugs">
+            <End Role="Drugs" EntitySet="Drugs" />
+            <End Role="DoctorDischarge" EntitySet="DoctorDischarges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DoctorDischarge_Drugs1" Association="Self.FK_DoctorDischarge_Drugs1">
+            <End Role="Drugs" EntitySet="Drugs" />
+            <End Role="DoctorDischarge" EntitySet="DoctorDischarges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DoctorDischarge_Drugs2" Association="Self.FK_DoctorDischarge_Drugs2">
+            <End Role="Drugs" EntitySet="Drugs" />
+            <End Role="DoctorDischarge" EntitySet="DoctorDischarges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DoctorDischarge_Patients" Association="Self.FK_DoctorDischarge_Patients">
+            <End Role="Patients" EntitySet="Patients" />
+            <End Role="DoctorDischarge" EntitySet="DoctorDischarges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doctors_Specifications" Association="Self.FK_Doctors_Specifications">
+            <End Role="Specifications" EntitySet="Specifications" />
+            <End Role="Doctors" EntitySet="Doctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Visits_Doctors" Association="Self.FK_Visits_Doctors">
+            <End Role="Doctors" EntitySet="Doctors" />
+            <End Role="Visits" EntitySet="Visits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Drugs_DrugProviders" Association="Self.FK_Drugs_DrugProviders">
+            <End Role="DrugProviders" EntitySet="DrugProviders" />
+            <End Role="Drugs" EntitySet="Drugs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Historyillings_Illings" Association="Self.FK_Historyillings_Illings">
+            <End Role="Illings" EntitySet="Illings" />
+            <End Role="Historyillings" EntitySet="Historyillings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientCards_Historyillings" Association="Self.FK_PatientCards_Historyillings">
+            <End Role="Historyillings" EntitySet="Historyillings" />
+            <End Role="PatientCards" EntitySet="PatientCards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patients_PatientCards" Association="Self.FK_Patients_PatientCards">
+            <End Role="PatientCards" EntitySet="PatientCards" />
+            <End Role="Patients" EntitySet="Patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patients_Policies" Association="Self.FK_Patients_Policies">
+            <End Role="Policies" EntitySet="Policies" />
+            <End Role="Patients" EntitySet="Patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Visits_Patients" Association="Self.FK_Visits_Patients">
+            <End Role="Patients" EntitySet="Patients" />
+            <End Role="Visits" EntitySet="Visits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Visits_Receptions" Association="Self.FK_Visits_Receptions">
+            <End Role="Receptions" EntitySet="Receptions" />
+            <End Role="Visits" EntitySet="Visits" />
+          </AssociationSet>
+          <FunctionImport Name="CrtAccShiftDuties" />
+          <FunctionImport Name="CrtAccWorks" />
+          <FunctionImport Name="CrtAgencies" />
+          <FunctionImport Name="CrtAnalyzes" />
+          <FunctionImport Name="CrtDocDischarge" />
+          <FunctionImport Name="CrtDoctors" />
+          <FunctionImport Name="CrtDrugProviders" />
+          <FunctionImport Name="CrtDrugs" />
+          <FunctionImport Name="CrtHistoryillings">
+            <Parameter Name="HistoryIllID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="CrtIllings" />
+          <FunctionImport Name="CrtPatientCards" />
+          <FunctionImport Name="CrtPatients" />
+          <FunctionImport Name="CrtPolicies" />
+          <FunctionImport Name="CrtReceptions" />
+          <FunctionImport Name="CrtShifts" />
+          <FunctionImport Name="CrtSpecifications" />
+          <FunctionImport Name="CrtVisits" />
+          <FunctionImport Name="DelAccShiftDuties">
+            <Parameter Name="AccID" Mode="In" Type="Guid" />
+            <Parameter Name="ShiftID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="DelAccWorks">
+            <Parameter Name="AccID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="DelAgencies">
+            <Parameter Name="AgID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="DelAnalyzes">
+            <Parameter Name="AnID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="DelDocDischarge">
+            <Parameter Name="DischargeID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="DelDoctors">
+            <Parameter Name="DocID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="DelDrugProviders">
+            <Parameter Name="DrugProviderID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="DelDrugs">
+            <Parameter Name="DrugID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="DelHistoryillings">
+            <Parameter Name="HistoryIllID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="DelIllings">
+            <Parameter Name="IllID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="DelPatientCards">
+            <Parameter Name="PatCardNum" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="DelPatients">
+            <Parameter Name="PatID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="DelPolicies">
+            <Parameter Name="PolID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="DelReceptions">
+            <Parameter Name="RecID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="DelShifts">
+            <Parameter Name="ShiftID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="DelSpecifications">
+            <Parameter Name="SpecID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="DelVisits">
+            <Parameter Name="VisitID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="InsAccShiftDuties">
+            <Parameter Name="AccID" Mode="In" Type="Guid" />
+            <Parameter Name="ShiftID" Mode="In" Type="Guid" />
+            <Parameter Name="IsDutyDoc" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="InsAccWorks">
+            <Parameter Name="AccID" Mode="In" Type="Guid" />
+            <Parameter Name="VisitID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="InsAgencies">
+            <Parameter Name="AgName" Mode="In" Type="String" />
+            <Parameter Name="AgID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="InsAnalyzes">
+            <Parameter Name="AnID" Mode="In" Type="Guid" />
+            <Parameter Name="AnType" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsDocDischarge">
+            <Parameter Name="DischargeID" Mode="In" Type="Guid" />
+            <Parameter Name="PatID" Mode="In" Type="Guid" />
+            <Parameter Name="DrugID1" Mode="In" Type="Guid" />
+            <Parameter Name="DrugID2" Mode="In" Type="Guid" />
+            <Parameter Name="DrugID3" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="InsDoctors">
+            <Parameter Name="DocID" Mode="In" Type="Guid" />
+            <Parameter Name="SpecID" Mode="In" Type="Guid" />
+            <Parameter Name="DocFullName" Mode="In" Type="String" />
+            <Parameter Name="Age" Mode="In" Type="Decimal" />
+            <Parameter Name="Exp" Mode="In" Type="Decimal" />
+            <Parameter Name="BirthD" Mode="In" Type="DateTime" />
+            <Parameter Name="Cost" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="InsDrugProviders">
+            <Parameter Name="DrugProviderID" Mode="In" Type="Guid" />
+            <Parameter Name="ProviderName" Mode="In" Type="String" />
+            <Parameter Name="ProviderCountry" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsDrugs">
+            <Parameter Name="DrugID" Mode="In" Type="Guid" />
+            <Parameter Name="DrugProviderID" Mode="In" Type="Guid" />
+            <Parameter Name="DrugName" Mode="In" Type="String" />
+            <Parameter Name="DrugPurpose" Mode="In" Type="String" />
+            <Parameter Name="IsPreAllowed" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="InsHistoryillings">
+            <Parameter Name="HistoryIllID" Mode="In" Type="Guid" />
+            <Parameter Name="IllID" Mode="In" Type="Guid" />
+            <Parameter Name="AnID" Mode="In" Type="Guid" />
+            <Parameter Name="AnRes" Mode="In" Type="String" />
+            <Parameter Name="DatePat" Mode="In" Type="DateTime" />
+            <Parameter Name="PatCond" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsIllings">
+            <Parameter Name="IllID" Mode="In" Type="Guid" />
+            <Parameter Name="IllName" Mode="In" Type="String" />
+            <Parameter Name="Sympt" Mode="In" Type="String" />
+            <Parameter Name="TreatDisDur" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="InsPatientCards">
+            <Parameter Name="PatCardNum" Mode="In" Type="Guid" />
+            <Parameter Name="CardCrtDate" Mode="In" Type="DateTime" />
+            <Parameter Name="CardOwnerFIO" Mode="In" Type="String" />
+            <Parameter Name="HisIllID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="InsPatients">
+            <Parameter Name="PatID" Mode="In" Type="Guid" />
+            <Parameter Name="PolID" Mode="In" Type="Decimal" />
+            <Parameter Name="PatCardNum" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="InsPolicies">
+            <Parameter Name="PolID" Mode="In" Type="Decimal" />
+            <Parameter Name="AgID" Mode="In" Type="Guid" />
+            <Parameter Name="PatFullName" Mode="In" Type="String" />
+            <Parameter Name="PatBirthD" Mode="In" Type="DateTime" />
+            <Parameter Name="PatAddr" Mode="In" Type="String" />
+            <Parameter Name="PatIssueD" Mode="In" Type="DateTime" />
+            <Parameter Name="PatExpD" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="InsReceptions">
+            <Parameter Name="RecID" Mode="In" Type="Guid" />
+            <Parameter Name="RecType" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsShifts">
+            <Parameter Name="ShiftID" Mode="In" Type="Guid" />
+            <Parameter Name="ShiftName" Mode="In" Type="String" />
+            <Parameter Name="ShiftTime" Mode="In" Type="Time" />
+          </FunctionImport>
+          <FunctionImport Name="InsSpecifications">
+            <Parameter Name="SpecID" Mode="In" Type="Guid" />
+            <Parameter Name="SpecName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsVisits">
+            <Parameter Name="VisitID" Mode="In" Type="Guid" />
+            <Parameter Name="PatientID" Mode="In" Type="Guid" />
+            <Parameter Name="DoctorID" Mode="In" Type="Guid" />
+            <Parameter Name="ReceptionDateTime" Mode="In" Type="DateTime" />
+            <Parameter Name="ReceptionID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(HospitalDBModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(HospitalDBModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="UpdAccShiftDuties">
+            <Parameter Name="AccID" Mode="In" Type="Guid" />
+            <Parameter Name="ShiftID" Mode="In" Type="Guid" />
+            <Parameter Name="IsDutyDoc" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="UpdAccWorks">
+            <Parameter Name="AccID" Mode="In" Type="Guid" />
+            <Parameter Name="VisitID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="UpdAgencies">
+            <Parameter Name="AgName" Mode="In" Type="String" />
+            <Parameter Name="AgID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="UpdAnalyzes">
+            <Parameter Name="AnID" Mode="In" Type="Guid" />
+            <Parameter Name="AnType" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdDocDischarge">
+            <Parameter Name="DischargeID" Mode="In" Type="Guid" />
+            <Parameter Name="PatID" Mode="In" Type="Guid" />
+            <Parameter Name="DrugID1" Mode="In" Type="Guid" />
+            <Parameter Name="DrugID2" Mode="In" Type="Guid" />
+            <Parameter Name="DrugID3" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="UpdDoctors">
+            <Parameter Name="DocID" Mode="In" Type="Guid" />
+            <Parameter Name="SpecID" Mode="In" Type="Guid" />
+            <Parameter Name="DocFullName" Mode="In" Type="String" />
+            <Parameter Name="Age" Mode="In" Type="Decimal" />
+            <Parameter Name="Exp" Mode="In" Type="Decimal" />
+            <Parameter Name="BirthD" Mode="In" Type="DateTime" />
+            <Parameter Name="Cost" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="UpdDrugProviders">
+            <Parameter Name="DrugProviderID" Mode="In" Type="Guid" />
+            <Parameter Name="ProviderName" Mode="In" Type="String" />
+            <Parameter Name="ProviderCountry" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdDrugs">
+            <Parameter Name="DrugID" Mode="In" Type="Guid" />
+            <Parameter Name="DrugProviderID" Mode="In" Type="Guid" />
+            <Parameter Name="DrugName" Mode="In" Type="String" />
+            <Parameter Name="DrugPurpose" Mode="In" Type="String" />
+            <Parameter Name="IsPreAllowed" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="UpdHistoryillings">
+            <Parameter Name="HistoryIllID" Mode="In" Type="Guid" />
+            <Parameter Name="IllID" Mode="In" Type="Guid" />
+            <Parameter Name="AnID" Mode="In" Type="Guid" />
+            <Parameter Name="AnRes" Mode="In" Type="String" />
+            <Parameter Name="DatePat" Mode="In" Type="DateTime" />
+            <Parameter Name="PatCond" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdIllings">
+            <Parameter Name="IllID" Mode="In" Type="Guid" />
+            <Parameter Name="IllName" Mode="In" Type="String" />
+            <Parameter Name="Sympt" Mode="In" Type="String" />
+            <Parameter Name="TreatDisDur" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="UpdPatientCards">
+            <Parameter Name="PatCardNum" Mode="In" Type="Guid" />
+            <Parameter Name="CardCrtDate" Mode="In" Type="DateTime" />
+            <Parameter Name="CardOwnerFIO" Mode="In" Type="String" />
+            <Parameter Name="HisIllID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="UpdPatients">
+            <Parameter Name="PatID" Mode="In" Type="Guid" />
+            <Parameter Name="PolID" Mode="In" Type="Decimal" />
+            <Parameter Name="PatCardNum" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="UpdPolicies">
+            <Parameter Name="PolID" Mode="In" Type="Decimal" />
+            <Parameter Name="AgID" Mode="In" Type="Guid" />
+            <Parameter Name="PatFullName" Mode="In" Type="String" />
+            <Parameter Name="PatBirthD" Mode="In" Type="DateTime" />
+            <Parameter Name="PatAddr" Mode="In" Type="String" />
+            <Parameter Name="PatIssueD" Mode="In" Type="DateTime" />
+            <Parameter Name="PatExpD" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="UpdReceptions">
+            <Parameter Name="RecID" Mode="In" Type="Guid" />
+            <Parameter Name="RecType" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdShifts">
+            <Parameter Name="ShiftID" Mode="In" Type="Guid" />
+            <Parameter Name="ShiftName" Mode="In" Type="String" />
+            <Parameter Name="ShiftTime" Mode="In" Type="Time" />
+          </FunctionImport>
+          <FunctionImport Name="UpdSpecifications">
+            <Parameter Name="SpecID" Mode="In" Type="Guid" />
+            <Parameter Name="SpecName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdVisits">
+            <Parameter Name="VisitID" Mode="In" Type="Guid" />
+            <Parameter Name="PatientID" Mode="In" Type="Guid" />
+            <Parameter Name="DoctorID" Mode="In" Type="Guid" />
+            <Parameter Name="ReceptionDateTime" Mode="In" Type="DateTime" />
+            <Parameter Name="ReceptionID" Mode="In" Type="Guid" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище HospitalDBModelContainer" CdmEntityContainer="HospitalDBEntities">
+          <EntitySetMapping Name="AccountingWorks">
+            <EntityTypeMapping TypeName="HospitalDBModel.AccountingWork">
+              <MappingFragment StoreEntitySet="AccountingWorks">
+                <ScalarProperty Name="AccountingID" ColumnName="AccountingID" />
+                <ScalarProperty Name="VisitID" ColumnName="VisitID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccShiftDuties">
+            <EntityTypeMapping TypeName="HospitalDBModel.AccShiftDuty">
+              <MappingFragment StoreEntitySet="AccShiftDuties">
+                <ScalarProperty Name="AccountingID" ColumnName="AccountingID" />
+                <ScalarProperty Name="ShiftID" ColumnName="ShiftID" />
+                <ScalarProperty Name="IsDutyDoctor" ColumnName="IsDutyDoctor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Agencies">
+            <EntityTypeMapping TypeName="HospitalDBModel.Agency">
+              <MappingFragment StoreEntitySet="Agencies">
+                <ScalarProperty Name="AgencyID" ColumnName="AgencyID" />
+                <ScalarProperty Name="AgencyName" ColumnName="AgencyName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Analyzes">
+            <EntityTypeMapping TypeName="HospitalDBModel.Analyze">
+              <MappingFragment StoreEntitySet="Analyzes">
+                <ScalarProperty Name="AnalysisID" ColumnName="AnalysisID" />
+                <ScalarProperty Name="AnalysisType" ColumnName="AnalysisType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DoctorDischarges">
+            <EntityTypeMapping TypeName="HospitalDBModel.DoctorDischarge">
+              <MappingFragment StoreEntitySet="DoctorDischarge">
+                <ScalarProperty Name="DischargeID" ColumnName="DischargeID" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="DrugID1" ColumnName="DrugID1" />
+                <ScalarProperty Name="DrugID2" ColumnName="DrugID2" />
+                <ScalarProperty Name="DrugID3" ColumnName="DrugID3" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doctors">
+            <EntityTypeMapping TypeName="HospitalDBModel.Doctor">
+              <MappingFragment StoreEntitySet="Doctors">
+                <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+                <ScalarProperty Name="SpecID" ColumnName="SpecID" />
+                <ScalarProperty Name="DoctorFullName" ColumnName="DoctorFullName" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Experience" ColumnName="Experience" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DrugProviders">
+            <EntityTypeMapping TypeName="HospitalDBModel.DrugProvider">
+              <MappingFragment StoreEntitySet="DrugProviders">
+                <ScalarProperty Name="DrugProviderID" ColumnName="DrugProviderID" />
+                <ScalarProperty Name="ProviderName" ColumnName="ProviderName" />
+                <ScalarProperty Name="ProviderCountry" ColumnName="ProviderCountry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Drugs">
+            <EntityTypeMapping TypeName="HospitalDBModel.Drug">
+              <MappingFragment StoreEntitySet="Drugs">
+                <ScalarProperty Name="DrugID" ColumnName="DrugID" />
+                <ScalarProperty Name="DrugProviderID" ColumnName="DrugProviderID" />
+                <ScalarProperty Name="DrugName" ColumnName="DrugName" />
+                <ScalarProperty Name="DrugPurpose" ColumnName="DrugPurpose" />
+                <ScalarProperty Name="IsPrescriptionAllowed" ColumnName="IsPrescriptionAllowed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Historyillings">
+            <EntityTypeMapping TypeName="HospitalDBModel.Historyilling">
+              <MappingFragment StoreEntitySet="Historyillings">
+                <ScalarProperty Name="HistoryillingID" ColumnName="HistoryillingID" />
+                <ScalarProperty Name="IllingID" ColumnName="IllingID" />
+                <ScalarProperty Name="AnalysisID" ColumnName="AnalysisID" />
+                <ScalarProperty Name="AnalysisResult" ColumnName="AnalysisResult" />
+                <ScalarProperty Name="DatePatientilling" ColumnName="DatePatientilling" />
+                <ScalarProperty Name="PatientCondition" ColumnName="PatientCondition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Illings">
+            <EntityTypeMapping TypeName="HospitalDBModel.Illing">
+              <MappingFragment StoreEntitySet="Illings">
+                <ScalarProperty Name="IllingID" ColumnName="IllingID" />
+                <ScalarProperty Name="IllingName" ColumnName="IllingName" />
+                <ScalarProperty Name="Symptomatology" ColumnName="Symptomatology" />
+                <ScalarProperty Name="TreatDiseaseDuration" ColumnName="TreatDiseaseDuration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientCards">
+            <EntityTypeMapping TypeName="HospitalDBModel.PatientCard">
+              <MappingFragment StoreEntitySet="PatientCards">
+                <ScalarProperty Name="PatientCardNum" ColumnName="PatientCardNum" />
+                <ScalarProperty Name="CardCreatingDate" ColumnName="CardCreatingDate" />
+                <ScalarProperty Name="CardOwnerFIO" ColumnName="CardOwnerFIO" />
+                <ScalarProperty Name="HistoryillingID" ColumnName="HistoryillingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patients">
+            <EntityTypeMapping TypeName="HospitalDBModel.Patient">
+              <MappingFragment StoreEntitySet="Patients">
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="PolicyID" ColumnName="PolicyID" />
+                <ScalarProperty Name="PatientCardNum" ColumnName="PatientCardNum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Policies">
+            <EntityTypeMapping TypeName="HospitalDBModel.Policy">
+              <MappingFragment StoreEntitySet="Policies">
+                <ScalarProperty Name="PolicyNum" ColumnName="PolicyNum" />
+                <ScalarProperty Name="AgencyID" ColumnName="AgencyID" />
+                <ScalarProperty Name="PatientFullName" ColumnName="PatientFullName" />
+                <ScalarProperty Name="PatientBirthDate" ColumnName="PatientBirthDate" />
+                <ScalarProperty Name="PatientAddress" ColumnName="PatientAddress" />
+                <ScalarProperty Name="PatientIssueDate" ColumnName="PatientIssueDate" />
+                <ScalarProperty Name="PatientExpiredDate" ColumnName="PatientExpiredDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Receptions">
+            <EntityTypeMapping TypeName="HospitalDBModel.Reception">
+              <MappingFragment StoreEntitySet="Receptions">
+                <ScalarProperty Name="ReceptionID" ColumnName="ReceptionID" />
+                <ScalarProperty Name="ReceptionType" ColumnName="ReceptionType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shifts">
+            <EntityTypeMapping TypeName="HospitalDBModel.Shift">
+              <MappingFragment StoreEntitySet="Shifts">
+                <ScalarProperty Name="ShiftID" ColumnName="ShiftID" />
+                <ScalarProperty Name="ShiftName" ColumnName="ShiftName" />
+                <ScalarProperty Name="ShiftTime" ColumnName="ShiftTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Specifications">
+            <EntityTypeMapping TypeName="HospitalDBModel.Specification">
+              <MappingFragment StoreEntitySet="Specifications">
+                <ScalarProperty Name="SpecID" ColumnName="SpecID" />
+                <ScalarProperty Name="SpecName" ColumnName="SpecName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="HospitalDBModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Visits">
+            <EntityTypeMapping TypeName="HospitalDBModel.Visit">
+              <MappingFragment StoreEntitySet="Visits">
+                <ScalarProperty Name="VisitID" ColumnName="VisitID" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+                <ScalarProperty Name="ReceptionDateTime" ColumnName="ReceptionDateTime" />
+                <ScalarProperty Name="ReceptionID" ColumnName="ReceptionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CrtAccShiftDuties" FunctionName="Хранилище HospitalDBModel.CrtAccShiftDuties" />
+          <FunctionImportMapping FunctionImportName="CrtAccWorks" FunctionName="Хранилище HospitalDBModel.CrtAccWorks" />
+          <FunctionImportMapping FunctionImportName="CrtAgencies" FunctionName="Хранилище HospitalDBModel.CrtAgencies" />
+          <FunctionImportMapping FunctionImportName="CrtAnalyzes" FunctionName="Хранилище HospitalDBModel.CrtAnalyzes" />
+          <FunctionImportMapping FunctionImportName="CrtDocDischarge" FunctionName="Хранилище HospitalDBModel.CrtDocDischarge" />
+          <FunctionImportMapping FunctionImportName="CrtDoctors" FunctionName="Хранилище HospitalDBModel.CrtDoctors" />
+          <FunctionImportMapping FunctionImportName="CrtDrugProviders" FunctionName="Хранилище HospitalDBModel.CrtDrugProviders" />
+          <FunctionImportMapping FunctionImportName="CrtDrugs" FunctionName="Хранилище HospitalDBModel.CrtDrugs" />
+          <FunctionImportMapping FunctionImportName="CrtHistoryillings" FunctionName="Хранилище HospitalDBModel.CrtHistoryillings" />
+          <FunctionImportMapping FunctionImportName="CrtIllings" FunctionName="Хранилище HospitalDBModel.CrtIllings" />
+          <FunctionImportMapping FunctionImportName="CrtPatientCards" FunctionName="Хранилище HospitalDBModel.CrtPatientCards" />
+          <FunctionImportMapping FunctionImportName="CrtPatients" FunctionName="Хранилище HospitalDBModel.CrtPatients" />
+          <FunctionImportMapping FunctionImportName="CrtPolicies" FunctionName="Хранилище HospitalDBModel.CrtPolicies" />
+          <FunctionImportMapping FunctionImportName="CrtReceptions" FunctionName="Хранилище HospitalDBModel.CrtReceptions" />
+          <FunctionImportMapping FunctionImportName="CrtShifts" FunctionName="Хранилище HospitalDBModel.CrtShifts" />
+          <FunctionImportMapping FunctionImportName="CrtSpecifications" FunctionName="Хранилище HospitalDBModel.CrtSpecifications" />
+          <FunctionImportMapping FunctionImportName="CrtVisits" FunctionName="Хранилище HospitalDBModel.CrtVisits" />
+          <FunctionImportMapping FunctionImportName="DelAccShiftDuties" FunctionName="Хранилище HospitalDBModel.DelAccShiftDuties" />
+          <FunctionImportMapping FunctionImportName="DelAccWorks" FunctionName="Хранилище HospitalDBModel.DelAccWorks" />
+          <FunctionImportMapping FunctionImportName="DelAgencies" FunctionName="Хранилище HospitalDBModel.DelAgencies" />
+          <FunctionImportMapping FunctionImportName="DelAnalyzes" FunctionName="Хранилище HospitalDBModel.DelAnalyzes" />
+          <FunctionImportMapping FunctionImportName="DelDocDischarge" FunctionName="Хранилище HospitalDBModel.DelDocDischarge" />
+          <FunctionImportMapping FunctionImportName="DelDoctors" FunctionName="Хранилище HospitalDBModel.DelDoctors" />
+          <FunctionImportMapping FunctionImportName="DelDrugProviders" FunctionName="Хранилище HospitalDBModel.DelDrugProviders" />
+          <FunctionImportMapping FunctionImportName="DelDrugs" FunctionName="Хранилище HospitalDBModel.DelDrugs" />
+          <FunctionImportMapping FunctionImportName="DelHistoryillings" FunctionName="Хранилище HospitalDBModel.DelHistoryillings" />
+          <FunctionImportMapping FunctionImportName="DelIllings" FunctionName="Хранилище HospitalDBModel.DelIllings" />
+          <FunctionImportMapping FunctionImportName="DelPatientCards" FunctionName="Хранилище HospitalDBModel.DelPatientCards" />
+          <FunctionImportMapping FunctionImportName="DelPatients" FunctionName="Хранилище HospitalDBModel.DelPatients" />
+          <FunctionImportMapping FunctionImportName="DelPolicies" FunctionName="Хранилище HospitalDBModel.DelPolicies" />
+          <FunctionImportMapping FunctionImportName="DelReceptions" FunctionName="Хранилище HospitalDBModel.DelReceptions" />
+          <FunctionImportMapping FunctionImportName="DelShifts" FunctionName="Хранилище HospitalDBModel.DelShifts" />
+          <FunctionImportMapping FunctionImportName="DelSpecifications" FunctionName="Хранилище HospitalDBModel.DelSpecifications" />
+          <FunctionImportMapping FunctionImportName="DelVisits" FunctionName="Хранилище HospitalDBModel.DelVisits" />
+          <FunctionImportMapping FunctionImportName="InsAccShiftDuties" FunctionName="Хранилище HospitalDBModel.InsAccShiftDuties" />
+          <FunctionImportMapping FunctionImportName="InsAccWorks" FunctionName="Хранилище HospitalDBModel.InsAccWorks" />
+          <FunctionImportMapping FunctionImportName="InsAgencies" FunctionName="Хранилище HospitalDBModel.InsAgencies" />
+          <FunctionImportMapping FunctionImportName="InsAnalyzes" FunctionName="Хранилище HospitalDBModel.InsAnalyzes" />
+          <FunctionImportMapping FunctionImportName="InsDocDischarge" FunctionName="Хранилище HospitalDBModel.InsDocDischarge" />
+          <FunctionImportMapping FunctionImportName="InsDoctors" FunctionName="Хранилище HospitalDBModel.InsDoctors" />
+          <FunctionImportMapping FunctionImportName="InsDrugProviders" FunctionName="Хранилище HospitalDBModel.InsDrugProviders" />
+          <FunctionImportMapping FunctionImportName="InsDrugs" FunctionName="Хранилище HospitalDBModel.InsDrugs" />
+          <FunctionImportMapping FunctionImportName="InsHistoryillings" FunctionName="Хранилище HospitalDBModel.InsHistoryillings" />
+          <FunctionImportMapping FunctionImportName="InsIllings" FunctionName="Хранилище HospitalDBModel.InsIllings" />
+          <FunctionImportMapping FunctionImportName="InsPatientCards" FunctionName="Хранилище HospitalDBModel.InsPatientCards" />
+          <FunctionImportMapping FunctionImportName="InsPatients" FunctionName="Хранилище HospitalDBModel.InsPatients" />
+          <FunctionImportMapping FunctionImportName="InsPolicies" FunctionName="Хранилище HospitalDBModel.InsPolicies" />
+          <FunctionImportMapping FunctionImportName="InsReceptions" FunctionName="Хранилище HospitalDBModel.InsReceptions" />
+          <FunctionImportMapping FunctionImportName="InsShifts" FunctionName="Хранилище HospitalDBModel.InsShifts" />
+          <FunctionImportMapping FunctionImportName="InsSpecifications" FunctionName="Хранилище HospitalDBModel.InsSpecifications" />
+          <FunctionImportMapping FunctionImportName="InsVisits" FunctionName="Хранилище HospitalDBModel.InsVisits" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище HospitalDBModel.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище HospitalDBModel.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище HospitalDBModel.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище HospitalDBModel.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HospitalDBModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище HospitalDBModel.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HospitalDBModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище HospitalDBModel.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище HospitalDBModel.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="UpdAccShiftDuties" FunctionName="Хранилище HospitalDBModel.UpdAccShiftDuties" />
+          <FunctionImportMapping FunctionImportName="UpdAccWorks" FunctionName="Хранилище HospitalDBModel.UpdAccWorks" />
+          <FunctionImportMapping FunctionImportName="UpdAgencies" FunctionName="Хранилище HospitalDBModel.UpdAgencies" />
+          <FunctionImportMapping FunctionImportName="UpdAnalyzes" FunctionName="Хранилище HospitalDBModel.UpdAnalyzes" />
+          <FunctionImportMapping FunctionImportName="UpdDocDischarge" FunctionName="Хранилище HospitalDBModel.UpdDocDischarge" />
+          <FunctionImportMapping FunctionImportName="UpdDoctors" FunctionName="Хранилище HospitalDBModel.UpdDoctors" />
+          <FunctionImportMapping FunctionImportName="UpdDrugProviders" FunctionName="Хранилище HospitalDBModel.UpdDrugProviders" />
+          <FunctionImportMapping FunctionImportName="UpdDrugs" FunctionName="Хранилище HospitalDBModel.UpdDrugs" />
+          <FunctionImportMapping FunctionImportName="UpdHistoryillings" FunctionName="Хранилище HospitalDBModel.UpdHistoryillings" />
+          <FunctionImportMapping FunctionImportName="UpdIllings" FunctionName="Хранилище HospitalDBModel.UpdIllings" />
+          <FunctionImportMapping FunctionImportName="UpdPatientCards" FunctionName="Хранилище HospitalDBModel.UpdPatientCards" />
+          <FunctionImportMapping FunctionImportName="UpdPatients" FunctionName="Хранилище HospitalDBModel.UpdPatients" />
+          <FunctionImportMapping FunctionImportName="UpdPolicies" FunctionName="Хранилище HospitalDBModel.UpdPolicies" />
+          <FunctionImportMapping FunctionImportName="UpdReceptions" FunctionName="Хранилище HospitalDBModel.UpdReceptions" />
+          <FunctionImportMapping FunctionImportName="UpdShifts" FunctionName="Хранилище HospitalDBModel.UpdShifts" />
+          <FunctionImportMapping FunctionImportName="UpdSpecifications" FunctionName="Хранилище HospitalDBModel.UpdSpecifications" />
+          <FunctionImportMapping FunctionImportName="UpdVisits" FunctionName="Хранилище HospitalDBModel.UpdVisits" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,50 @@
+﻿@model HospitalASP.Visit
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Visit</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ReceptionDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReceptionDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Doctor.DoctorFullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Doctor.DoctorFullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient.PatientID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.PatientID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Reception.ReceptionType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Reception.ReceptionType)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.VisitID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

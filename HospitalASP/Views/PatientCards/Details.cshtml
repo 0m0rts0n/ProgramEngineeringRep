@@ -1,0 +1,42 @@
+﻿@model HospitalASP.PatientCard
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PatientCard</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CardCreatingDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CardCreatingDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CardOwnerFIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CardOwnerFIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Historyilling.AnalysisResult)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Historyilling.AnalysisResult)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PatientCardNum }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

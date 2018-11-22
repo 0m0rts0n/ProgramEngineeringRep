@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f7faa243d4dc4c3baedb44d8a3eaf39a" Name="Diagram1">
+        <EntityTypeShape EntityType="HospitalDBModel.AccountingWork" Width="1.5" PointX="15" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDBModel.AccShiftDuty" Width="1.5" PointX="17.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDBModel.Agency" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDBModel.Analyze" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDBModel.DoctorDischarge" Width="1.5" PointX="9.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDBModel.Doctor" Width="1.5" PointX="10.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDBModel.DrugProvider" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDBModel.Drug" Width="1.5" PointX="7.5" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDBModel.Historyilling" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDBModel.Illing" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDBModel.PatientCard" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDBModel.Patient" Width="1.5" PointX="7.5" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDBModel.Policy" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDBModel.Reception" Width="1.5" PointX="10.5" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDBModel.Shift" Width="1.5" PointX="15" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDBModel.Specification" Width="1.5" PointX="8.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDBModel.sysdiagram" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDBModel.Visit" Width="1.5" PointX="12.75" PointY="4.875" IsExpanded="true" />
+        <AssociationConnector Association="HospitalDBModel.FK_AccountingWorks_Visits" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDBModel.FK_AccShiftDuties_AccountingWorks" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDBModel.FK_AccShiftDuties_Shifts" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDBModel.FK_Policies_Agencies" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDBModel.FK_Historyillings_Analyzes" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDBModel.FK_DoctorDischarge_Drugs" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDBModel.FK_DoctorDischarge_Drugs1" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDBModel.FK_DoctorDischarge_Drugs2" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDBModel.FK_DoctorDischarge_Patients" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDBModel.FK_Doctors_Specifications" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDBModel.FK_Visits_Doctors" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDBModel.FK_Drugs_DrugProviders" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDBModel.FK_Historyillings_Illings" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDBModel.FK_PatientCards_Historyillings" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDBModel.FK_Patients_PatientCards" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDBModel.FK_Patients_Policies" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDBModel.FK_Visits_Patients" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDBModel.FK_Visits_Receptions" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

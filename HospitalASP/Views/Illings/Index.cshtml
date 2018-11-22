@@ -1,0 +1,45 @@
+﻿@model IEnumerable<HospitalASP.Illing>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IllingName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Symptomatology)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TreatDiseaseDuration)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IllingName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Symptomatology)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TreatDiseaseDuration)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IllingID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IllingID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IllingID })
+        </td>
+    </tr>
+}
+
+</table>

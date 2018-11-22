@@ -1,0 +1,42 @@
+﻿@model HospitalASP.Illing
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Illing</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IllingName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IllingName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Symptomatology)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Symptomatology)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TreatDiseaseDuration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TreatDiseaseDuration)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IllingID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,58 @@
+﻿@model HospitalASP.Historyilling
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Historyilling</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AnalysisResult)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnalysisResult)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DatePatientilling)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatePatientilling)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PatientCondition)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PatientCondition)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Analyze.AnalysisType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Analyze.AnalysisType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Illing.IllingName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Illing.IllingName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.HistoryillingID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

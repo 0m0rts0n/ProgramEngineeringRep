@@ -1,0 +1,66 @@
+﻿@model HospitalASP.Policy
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Policy</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PatientFullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PatientFullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PatientBirthDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PatientBirthDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PatientAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PatientAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PatientIssueDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PatientIssueDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PatientExpiredDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PatientExpiredDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Agency.AgencyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Agency.AgencyName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PolicyNum }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

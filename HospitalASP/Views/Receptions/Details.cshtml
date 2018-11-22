@@ -1,0 +1,26 @@
+﻿@model HospitalASP.Reception
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Reception</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ReceptionType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReceptionType)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ReceptionID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

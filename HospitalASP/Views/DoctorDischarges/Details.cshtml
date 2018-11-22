@@ -1,0 +1,50 @@
+﻿@model HospitalASP.DoctorDischarge
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DoctorDischarge</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Drug.DrugName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Drug.DrugName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Drug1.DrugName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Drug1.DrugName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Drug2.DrugName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Drug2.DrugName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient.PatientID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.PatientID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DischargeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
