@@ -1,4 +1,4 @@
-**Что сделал:** добавил контроллеры, сгенерированные из данных, полученных через Entity Framework **[см. ссылку на ветку]**(https://github.com/0m0rts0n/ProgramEngineeringRep/tree/masterASP).
+**Что сделал:** добавил контроллеры, сгенерированные из данных, полученных через Entity Framework **(см. ссылку на ветку)**[https://github.com/0m0rts0n/ProgramEngineeringRep/tree/masterASP].
 
 **Что буду делать:** писать запросы в Postman для проверки работы Web API (в режиме запуска в качестве проекта ASP.NET GET-запросы работают корректно).
 
