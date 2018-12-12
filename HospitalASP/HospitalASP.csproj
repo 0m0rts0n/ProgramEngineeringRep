@@ -66,6 +66,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
@@ -220,7 +221,6 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AccountingWorksController.cs" />
     <Compile Include="Controllers\AccShiftDutiesController.cs" />
     <Compile Include="Controllers\AgenciesController.cs" />
@@ -238,7 +238,6 @@
     <Compile Include="Controllers\ReceptionsController.cs" />
     <Compile Include="Controllers\ShiftsController.cs" />
     <Compile Include="Controllers\SpecificationsController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\VisitsController.cs" />
     <Compile Include="Doctor.cs">
       <DependentUpon>HospitalModel.tt</DependentUpon>
@@ -251,6 +250,13 @@
     </Compile>
     <Compile Include="DrugProvider.cs">
       <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DrugsForm.aspx.cs">
+      <DependentUpon>DrugsForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DrugsForm.aspx.designer.cs">
+      <DependentUpon>DrugsForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -318,6 +324,7 @@
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="DrugsForm.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
